@@ -1,0 +1,14 @@
+{
+    "version": "0.2",
+    "ignorePaths": [],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "countup",
+        "craco",
+        "desaturate",
+        "swiper"
+    ],
+    "ignoreWords": [],
+    "import": []
+}
