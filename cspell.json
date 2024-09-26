@@ -7,7 +7,9 @@
         "countup",
         "craco",
         "desaturate",
-        "swiper"
+        "Flexbox",
+        "swiper",
+        "Timelapse"
     ],
     "ignoreWords": [],
     "import": []

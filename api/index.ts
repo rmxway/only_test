@@ -1,16 +1,18 @@
-interface Item {
+export interface Item {
 	date: number;
 	description: string;
 }
 
-interface DataItem {
+export interface DataItem {
 	start: number;
 	end: number;
 	title: string;
 	dates: Item[];
 }
 
-export const Data: DataItem[] = [
+export type DataType = DataItem[];
+
+export const Data: DataType = [
 	{
 		start: 2010,
 		end: 2014,

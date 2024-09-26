@@ -1,23 +1,21 @@
-import { darken, desaturate } from 'polished';
 import { DefaultTheme } from 'styled-components';
 
 import { Colors, Gradients } from '@/@types/styled';
 
-const primary = '#fdd01a';
-const success = '#00ff9d';
-const danger = '#e54f5e';
+const primary = '#5354EC';
+const secondary = '#EC539E';
+const title = '#42567A';
 
 const colors: Colors = {
 	primary,
-	success,
-	danger,
-	dark: desaturate(0.9, darken(0.2, success)),
+	secondary,
+	title,
 	gray: {
-		$1: '#f3f3f3',
-		$2: '#e3e3e3',
-		$3: '#cdcdcd',
-		$4: '#bebebe',
-		$5: '#a5a5a5',
+		$1: '#F3F3F3',
+		$2: '#E3E3E3',
+		$3: '#CDCDCD',
+		$4: '#BEBEBE',
+		$5: '#A5A5A5',
 		$6: '#747474',
 		$7: '#595959',
 		$8: '#434343',
@@ -29,7 +27,7 @@ export const createGradient = (deg: string, color1: string, long1: string, color
 	`linear-gradient(${deg}, ${color1} ${long1}, ${color2} ${long2})`;
 
 const gradients: Gradients = {
-	main: (deg = '150deg') => createGradient(deg, '#e8ffb3', '0%', success, '60%'),
+	main: (deg = '150deg') => createGradient(deg, '#E8FFB3', '0%', secondary, '60%'),
 };
 
 export const defaultTheme: DefaultTheme = {

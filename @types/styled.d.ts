@@ -2,9 +2,8 @@ import 'styled-components';
 
 export interface Colors {
 	primary: string;
-	success: string;
-	danger: string;
-	dark: string;
+	secondary: string;
+	title: string;
 	gray: {
 		$1: string;
 		$2: string;

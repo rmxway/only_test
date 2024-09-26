@@ -1,1 +1,3 @@
-export * from './Header';
+export * from './layouts';
+export * from './Timelapse';
+export * from './MainSlider';

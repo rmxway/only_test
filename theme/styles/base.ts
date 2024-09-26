@@ -1,7 +1,5 @@
 import { css } from 'styled-components';
 
-import { media } from '@/theme/media';
-
 export const base = css`
 	*,
 	*::after,
@@ -11,17 +9,10 @@ export const base = css`
 		-moz-osx-font-smoothing: grayscale;
 	}
 	body {
+		background-color: #f4f5f9;
 		overflow-y: scroll;
 		font-size: 1rem;
-		display: flex;
-		flex-direction: column;
-		line-height: 1.25;
-		min-width: 320px;
-		min-height: 100vh;
-
-		${media.lessThan('md')`
-            padding-top: 70px;
-        `}
+        font-family: 'PT Sans', sans-serif;
 	}
 	code {
 		font-family: 'source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
