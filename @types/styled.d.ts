@@ -4,6 +4,7 @@ export interface Colors {
 	primary: string;
 	secondary: string;
 	title: string;
+	bg: string;
 	gray: {
 		$1: string;
 		$2: string;

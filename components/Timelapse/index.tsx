@@ -9,7 +9,7 @@ export const TimeLapse: FC<{ data: DataType }> = ({ data }) => (
 			<h1>
 				Исторические <span>даты</span>
 			</h1>
-			{data.length && <MainSlider data={data} />}
+			{data.length >= 2 && <MainSlider data={data} />}
 		</Container>
 	</WrapperTimelapse>
 );

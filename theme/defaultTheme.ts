@@ -4,12 +4,14 @@ import { Colors, Gradients } from '@/@types/styled';
 
 const primary = '#5354EC';
 const secondary = '#EC539E';
+const bg = '#F4F5F9';
 const title = '#42567A';
 
 const colors: Colors = {
 	primary,
 	secondary,
 	title,
+    bg,
 	gray: {
 		$1: '#F3F3F3',
 		$2: '#E3E3E3',
