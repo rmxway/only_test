@@ -2,7 +2,7 @@ import { DefaultTheme } from 'styled-components';
 
 import { Colors, Gradients } from '@/@types/styled';
 
-const primary = '#5354EC';
+const primary = '#3877EE';
 const secondary = '#EC539E';
 const bg = '#F4F5F9';
 const title = '#42567A';
@@ -11,7 +11,7 @@ const colors: Colors = {
 	primary,
 	secondary,
 	title,
-    bg,
+	bg,
 	gray: {
 		$1: '#F3F3F3',
 		$2: '#E3E3E3',
@@ -42,6 +42,10 @@ export const defaultTheme: DefaultTheme = {
 	},
 	radius: {
 		borderRadius: '8px',
+	},
+	fonts: {
+		main: `'PT Sans', sans-serif`,
+		secondary: `'Bebas Neue', sans-serif`,
 	},
 };
 

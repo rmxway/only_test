@@ -1,4 +1,5 @@
 import { css } from 'styled-components';
+import { defaultTheme as theme } from '../defaultTheme';
 
 export const base = css`
 	*,
@@ -12,7 +13,7 @@ export const base = css`
 		background-color: #f4f5f9;
 		overflow-y: scroll;
 		font-size: 1rem;
-        font-family: 'PT Sans', sans-serif;
+		font-family: ${theme.fonts.main};
 	}
 	code {
 		font-family: 'source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;

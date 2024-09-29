@@ -9,6 +9,8 @@ export const SliderCircleWrapper = styled.div`
 		width: 530px;
 		height: 530px;
 		transform: translate(-50%, -50%);
+		pointer-events: none;
+		z-index: 1;
 
 		svg {
 			width: 100%;
@@ -25,6 +27,8 @@ export const SliderCircleWrapper = styled.div`
 			color: ${theme.colors.title};
 			border-radius: 30px;
 			font-size: 0;
+			pointer-events: all;
+			z-index: 10;
 
 			&:before {
 				content: '';
@@ -46,14 +50,14 @@ export const SliderCircleWrapper = styled.div`
 				top: 14px;
 				left: 100%;
 				font-weight: 700;
-				transition: all 0.2s;
-				transition-delay: 0.15s;
+				transition: all 0.1s;
 			}
 
 			&.active {
 				pointer-events: none;
 				span {
 					opacity: 1;
+					transition: all 0.4s;
 					left: calc(100% + 20px);
 				}
 			}
@@ -76,10 +80,12 @@ export const SliderCircleWrapper = styled.div`
 export const VertLine = styled.div`
 	${({ theme }) => css`
 		position: fixed;
+		pointer-events: none;
 		top: 0;
 		left: 50%;
 		width: 1px;
 		height: 100vh;
+		z-index: -1;
 		background-color: ${theme.colors.title}30;
 
 		${media.lessThan('md')`
@@ -91,10 +97,12 @@ export const VertLine = styled.div`
 export const HorLine = styled.div`
 	${({ theme }) => css`
 		position: absolute;
+		pointer-events: none;
 		top: 50%;
 		left: -80px;
 		right: -80px;
 		height: 1px;
+		z-index: -1;
 		background-color: ${theme.colors.title}30;
 
 		${media.lessThan('xl')`
@@ -108,10 +116,12 @@ export const HorLine = styled.div`
         `}
 
         ${media.lessThan('md')`
-            position: relative;
+            position: absolute;
             top: auto;
             left: auto;
             right: auto;
+            bottom: 0;
+            height: 2px;
             width: 100%;
         `}
 	`}

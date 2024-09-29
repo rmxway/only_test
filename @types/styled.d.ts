@@ -29,6 +29,11 @@ interface Radius {
 	borderRadius: string;
 }
 
+interface Fonts {
+	main: string;
+	secondary: string;
+}
+
 declare module 'styled-components' {
 	export interface DefaultTheme {
 		name: string;
@@ -36,5 +41,6 @@ declare module 'styled-components' {
 		gradients: Gradients;
 		layout: Layout;
 		radius: Radius;
+		fonts: Fonts;
 	}
 }

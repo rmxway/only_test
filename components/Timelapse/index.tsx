@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Container, MainSlider } from '@/components';
+import { Container, Slider } from '@/components';
 import { WrapperTimelapse } from './styled';
 import { DataType } from '@/api';
 
@@ -9,7 +9,7 @@ export const TimeLapse: FC<{ data: DataType }> = ({ data }) => (
 			<h1>
 				Исторические <span>даты</span>
 			</h1>
-			{data.length >= 2 && <MainSlider data={data} />}
+			{data.length >= 2 && <Slider data={data} />}
 		</Container>
 	</WrapperTimelapse>
 );
