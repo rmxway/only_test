@@ -45,7 +45,6 @@ export const SliderCircleWrapper = styled.div`
 
 				span {
 					opacity: 1;
-					font-size: 20px;
 					left: calc(100% + 20px);
 					transition: all 0.4s;
 					transition-delay: 0.7s;
@@ -84,12 +83,14 @@ export const SliderCircleWrapper = styled.div`
 				position: absolute;
 				top: 50%;
 				left: 100%;
-                width: 200px;
-                transform: translate(0, -50%);
-                text-align: left;
+				width: 200px;
+				transform: translate(0, -50%);
+				text-align: left;
 				opacity: 0;
+				font-size: 20px;
 				font-weight: 700;
-				transition: left opacity 0.2s;
+				transition-property: opacity, left;
+				transition-duration: 0.2s;
 				transition-delay: 0s;
 			}
 		}

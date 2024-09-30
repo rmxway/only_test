@@ -76,7 +76,7 @@ export const ControlsBlockStyled = styled.div`
 			border: 1px solid ${theme.colors.title}80;
 			line-height: 50px;
 			transition-duration: 0.2s;
-			transition-property: opacity background-color;
+			transition-property: opacity, background-color;
 
 			&:hover {
 				background-color: #fff;
