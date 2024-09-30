@@ -82,12 +82,14 @@ export const SliderCircleWrapper = styled.div`
 			span {
 				pointer-events: none;
 				position: absolute;
-				top: 12px;
+				top: 50%;
 				left: 100%;
+                width: 200px;
+                transform: translate(0, -50%);
+                text-align: left;
 				opacity: 0;
-				font-size: 0;
 				font-weight: 700;
-				transition: all 0.2s;
+				transition: left opacity 0.2s;
 				transition-delay: 0s;
 			}
 		}
