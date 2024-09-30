@@ -20,15 +20,51 @@ export const SliderCircleWrapper = styled.div`
 		button {
 			position: absolute;
 			cursor: pointer;
+
 			width: 6px;
 			height: 6px;
+
 			margin: 0;
 			padding: 0;
-			color: ${theme.colors.title};
 			border-radius: 30px;
+			border: 1px solid ${theme.colors.title}50;
+			color: ${theme.colors.title};
+			background-color: #222;
 			font-size: 0;
+
+			transform: translate(-50%, -50%);
+			transform-origin: center;
+			transition-duration: 0.3s;
+
 			pointer-events: all;
 			z-index: 10;
+
+			&.active {
+				pointer-events: none;
+				transition-duration: 0.6s;
+
+				span {
+					opacity: 1;
+					font-size: 20px;
+					left: calc(100% + 20px);
+					transition: all 0.4s;
+					transition-delay: 0.7s;
+				}
+			}
+
+			&:hover {
+				transition-duration: 0.3s;
+				transition-delay: 0.2s;
+			}
+
+			&.active,
+			&:hover {
+				width: 56px;
+				height: 56px;
+				font-size: 20px;
+				background-color: ${theme.colors.bg};
+				border: 1px solid ${theme.colors.title}50;
+			}
 
 			&:before {
 				content: '';
@@ -46,20 +82,13 @@ export const SliderCircleWrapper = styled.div`
 			span {
 				pointer-events: none;
 				position: absolute;
-				opacity: 0;
-				top: 14px;
+				top: 12px;
 				left: 100%;
+				opacity: 0;
+				font-size: 0;
 				font-weight: 700;
-				transition: all 0.1s;
-			}
-
-			&.active {
-				pointer-events: none;
-				span {
-					opacity: 1;
-					transition: all 0.4s;
-					left: calc(100% + 20px);
-				}
+				transition: all 0.2s;
+				transition-delay: 0s;
 			}
 		}
 
@@ -105,24 +134,8 @@ export const HorLine = styled.div`
 		z-index: -1;
 		background-color: ${theme.colors.title}30;
 
-		${media.lessThan('xl')`
-            left: -40px;
-            right: -40px;
-        `}
-
-		${media.lessThan('lg')`
-            left: -20px;
-            right: -20px;
-        `}
-
-        ${media.lessThan('md')`
-            position: absolute;
-            top: auto;
-            left: auto;
-            right: auto;
-            bottom: 0;
-            height: 2px;
-            width: 100%;
+		${media.lessThan('md')`
+            display: none;
         `}
 	`}
 `;

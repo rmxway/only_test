@@ -2,64 +2,29 @@ import styled, { css } from 'styled-components';
 import { media } from '@/theme';
 
 export const WrapperMainSlider = styled.div`
-	${({ theme }) => css`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	.circle-section {
 		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		padding-bottom: 80px;
+		min-width: 1%;
+		min-height: 150px;
+		height: 620px;
+		width: 100%;
+	}
 
-		.circle-section {
-			position: relative;
-			min-width: 1%;
-			min-height: 170px;
-			height: 620px;
-			width: 100%;
-		}
-
-		.pagination {
-			position: absolute;
-			bottom: 20px;
-			left: 50%;
-			transform: translateX(-50%);
-			display: flex;
-			justify-content: center;
-			gap: 10px;
-			width: 110px;
-			visibility: hidden;
-		}
-
-		${media.lessThan('md')`
+	${media.lessThan('md')`
+            flex-grow: 1;
             padding-left: 0;
 
             .circle-section {
-                height: 30vh;
-
-            }
-
-            .pagination {
-                position: absolute;
-                bottom: 35px;
-                visibility: visible;
-            }
-
-            .main-swiper {
-                top:0;
-                height: 20vh;
-                margin-top: 20px;
+                height: auto;
+                flex-grow: 1;
+                min-height: 100px;
             }
         `}
-
-		--swiper-pagination-color: ${theme.colors.title};
-		--swiper-pagination-left: 5px;
-		--swiper-pagination-right: 5px;
-		--swiper-pagination-bullet-width: 6px;
-		--swiper-pagination-bullet-height: 6px;
-		--swiper-pagination-bullet-inactive-color: #000;
-		--swiper-pagination-bullet-inactive-opacity: 0.3;
-		--swiper-pagination-bullet-opacity: 1;
-		--swiper-pagination-bullet-horizontal-gap: 0px;
-	`}
 `;
 
 export const YearsFromTo = styled.div`
@@ -98,7 +63,7 @@ export const YearsFromTo = styled.div`
         `}
 
         ${media.lessThan('sm')`
-            font-size: 60px;
+            font-size: 56px;
             gap: 20px;
         `}
 	`}

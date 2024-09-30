@@ -10,10 +10,10 @@ interface BreakpointsType {
 }
 
 const breakpoints: BreakpointsType = {
-	xl: '1400px',
-	lg: '1280px',
-	md: '1024px',
-	sm: '768px',
+	xl: '1460px',
+	lg: '1300px',
+	md: '1044px',
+	sm: '800px',
 	xs: '600px',
 	xxs: '350px',
 };

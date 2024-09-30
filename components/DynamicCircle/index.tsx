@@ -1,10 +1,11 @@
-import { FC, memo, useLayoutEffect, useRef, useState } from 'react';
+import { FC, memo, useLayoutEffect, useRef } from 'react';
 import { HorLine, SliderCircleWrapper, VertLine } from './styled';
 import { SliderCircle } from './SliderCircle';
 import { gsap, MotionPathPlugin } from 'gsap/all';
 import { useGSAP } from '@gsap/react';
+import { useMediaQuery } from '@/hooks';
+import { breakpoints } from '@/theme';
 import cn from 'classnames';
-import { defaultTheme } from '@/theme';
 
 interface DynamicCircleProps {
 	buttons: string[];
@@ -17,90 +18,42 @@ gsap.registerPlugin(MotionPathPlugin);
 export const DynamicCircle: FC<DynamicCircleProps> = memo(({ buttons, currentPage, setCurrentPage }) => {
 	const steps = buttons.length;
 	const angle = 360 / steps;
-
-	const [active, setActive] = useState(false);
+	const isDesktop = useMediaQuery(breakpoints.md);
 
 	const container = useRef(null);
-	const tlHover = useRef<gsap.core.Timeline>();
-	const tlActive = useRef<gsap.core.Timeline | null>();
-
-	const activeParams = {
-		width: '56px',
-		height: '56px',
-		backgroundColor: defaultTheme.colors.bg,
-		border: `1px solid ${defaultTheme.colors.title}50`,
-		translate: '-50% -50%',
-		transformOrigin: 'center',
-		fontSize: '20px',
-	};
+	const tlPath = useRef<gsap.core.Timeline>();
 
 	const { contextSafe } = useGSAP(
 		() => {
 			const pathCircle = MotionPathPlugin.convertToPath('#circle', true)[0];
 
-			gsap.timeline().fromTo(
-				'.slide',
-				{
-					opacity: 0,
-					border: '3px solid #222',
-				},
-				{
-					// @ts-ignore
-					motionPath: {
-						path: pathCircle,
-						align: pathCircle,
-						end: (idx: number) => idx / steps - 0.125,
+			tlPath.current = gsap
+				.timeline({
+					paused: true,
+				})
+				.fromTo(
+					'.slide',
+					{
+						opacity: 0,
 					},
-					ease: 'power3.out',
-					translate: '-50% -50%',
-					duration: 1,
-					opacity: 1,
-				},
-			);
+					{
+						// @ts-ignore
+						motionPath: {
+							path: pathCircle,
+							align: pathCircle,
+							end: (idx: number) => idx / steps - 0.125,
+						},
+						ease: 'power3.out',
+						translate: '-50% -50%',
+						duration: 1,
+						opacity: 1,
+					},
+				);
 		},
 		{ scope: container },
 	);
 
-	const mouseOverAnimation = contextSafe((e: React.MouseEvent<HTMLButtonElement>) => {
-		tlHover.current = gsap
-			.timeline({
-				onReverseCompleteParams: [tlHover],
-				onReverseComplete: (e) => {
-					e.current.kill();
-				},
-			})
-			.to(e.target, {
-				...activeParams,
-				ease: 'circ.inOut',
-				duration: 0.2,
-			});
-	});
-
-	const mouseLeaveAnimation = contextSafe(() => {
-		tlHover.current && tlHover.current.reverse();
-	});
-
 	const animateState = contextSafe((idx: number) => {
-		mouseLeaveAnimation();
-		const btns = document.querySelectorAll('.slide');
-		tlActive.current && tlActive.current.reverse(0);
-		tlActive.current = gsap
-			.timeline({
-				onComplete: () => {
-					setActive(true);
-				},
-				onReverseCompleteParams: [tlActive],
-				onReverseComplete: (e) => {
-					setActive(true);
-					e.current.kill();
-				},
-			})
-			.to(btns[idx], {
-				...activeParams,
-				duration: 0.5,
-				delay: 0.21,
-			});
-
 		gsap.to('.slide', {
 			rotation: `${idx * angle}`,
 			duration: 1,
@@ -114,29 +67,34 @@ export const DynamicCircle: FC<DynamicCircleProps> = memo(({ buttons, currentPag
 	});
 
 	useLayoutEffect(() => {
-		setActive(false);
 		animateState(currentPage - 1);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentPage]);
+	}, [animateState, currentPage]);
+
+	useLayoutEffect(() => {
+		// update circle elements when switching between mobile and desktop screens
+		if (!isDesktop) {
+			tlPath?.current?.play();
+		}
+	}, [isDesktop]);
 
 	return (
 		<>
 			<SliderCircleWrapper ref={container}>
 				<div className="wrapper">
 					{buttons.map((button, idx) => (
-						<button
-							className={cn('slide', { active: active && currentPage === idx + 1 })}
+						<div
+							className="slide"
 							key={button}
-							data-id={idx}
-							onMouseUp={() => {
+							id={`slide${idx}`}
+							onClick={() => {
 								setCurrentPage(idx + 1);
 							}}
-							onMouseOver={mouseOverAnimation}
-							onMouseLeave={mouseLeaveAnimation}
 						>
-							{idx + 1}
-							<span>{button}</span>
-						</button>
+							<button className={cn({ active: currentPage === idx + 1 })}>
+								{idx + 1}
+								<span>{button}</span>
+							</button>
+						</div>
 					))}
 				</div>
 				<SliderCircle />

@@ -5,7 +5,7 @@ import { DataType } from '@/api';
 
 export const TimeLapse: FC<{ data: DataType }> = ({ data }) => (
 	<WrapperTimelapse>
-		<Container>
+		<Container $flex>
 			<h1>
 				Исторические <span>даты</span>
 			</h1>

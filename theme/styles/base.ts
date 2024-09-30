@@ -12,6 +12,7 @@ export const base = css`
 	body {
 		background-color: #f4f5f9;
 		overflow-y: scroll;
+        overflow-x: hidden;
 		font-size: 1rem;
 		font-family: ${theme.fonts.main};
 	}

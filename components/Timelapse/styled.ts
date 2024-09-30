@@ -9,7 +9,7 @@ export const WrapperTimelapse = styled.div`
 		line-height: 1.25;
 		min-width: 320px;
 		max-width: 100%;
-		min-height: 100vh;
+		min-height: 100svh;
 
 		${Container} {
 			padding-top: 180px;
@@ -44,26 +44,22 @@ export const WrapperTimelapse = styled.div`
 			}
 		}
 
-		${media.lessThan('xl')`
-            h1 {
-                padding-left: 40px;
-            }
-        `}
-
 		${media.lessThan('lg')`
             h1 {
-                padding-left: 20px;
                 font-size: 40px;
                 line-height: 48px;
             }
         `}
 
-        ${media.lessThan('md')`
+		${media.lessThan('md')`
             ${Container} {
                 padding-top: 60px;
+                border: none;
             }
 
             h1 {
+                position: relative;
+                padding-left: 0;
                 font-size: 20px;
                 line-height: 24px;
 

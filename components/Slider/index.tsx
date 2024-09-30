@@ -6,11 +6,6 @@ import { WrapperMainSlider, YearsFromTo } from './styled';
 import type SwiperType from 'swiper';
 import { DataType } from '@/api';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
-
 export const Slider: FC<{ data: DataType }> = memo(({ data }) => {
 	const [years, setYears] = useState({
 		start: data[0].start,

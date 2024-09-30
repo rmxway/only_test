@@ -45,23 +45,18 @@ export const Container = styled.div<ContainerProps>`
 
     ${media.lessThan('xl')`
 		max-width: 1280px;
-        padding: 0 40px;
 	`}
 
     ${media.lessThan('lg')`
 		max-width: 1024px;
-        padding: 0 20px;
 	`}
 
 	${media.lessThan('md')`
 		max-width: 768px;
+        padding: 0 20px;
 	`}
 
     ${media.lessThan('sm')`
-		max-width: 600px;
-	`}
-
-    ${media.lessThan('xs')`
 		max-width: 100%;
 	`}
 `;

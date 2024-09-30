@@ -2,11 +2,11 @@ import { FC, useEffect, useState } from 'react';
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';
 import { EffectCreative, Navigation, Pagination } from 'swiper/modules';
 import type SwiperType from 'swiper';
-import { DataType } from '@/api';
-
 import InnerSwiper from '@/components/Slider/InnerSwiper';
 import MainControlsBlock from './MainControlsBlock';
 import { MainSwiperWrapper } from './styled';
+
+import { DataType } from '@/api';
 
 export const MainSwiper: FC<{ data: DataType; currentPage: number } & SwiperProps> = ({
 	data,
@@ -29,6 +29,7 @@ export const MainSwiper: FC<{ data: DataType; currentPage: number } & SwiperProp
 		},
 		effect: 'creative',
 		creativeEffect: {
+			limitProgress: 2,
 			next: {
 				translate: [0, 0, 0],
 			},
@@ -36,20 +37,12 @@ export const MainSwiper: FC<{ data: DataType; currentPage: number } & SwiperProp
 				translate: [0, 1, 0],
 			},
 		},
-		speed: 1000,
+		speed: 800,
 		allowTouchMove: false,
 		spaceBetween: 0,
 		slidesPerView: 1,
 		onSwiper: setMainSwiper,
 		onSlideChange,
-		onSlideChangeTransitionStart: (swiper) => {
-			swiper.allowSlidePrev = false;
-			swiper.allowSlideNext = false;
-		},
-		onSlideChangeTransitionEnd: (swiper) => {
-			swiper.allowSlidePrev = true;
-			swiper.allowSlideNext = true;
-		},
 	};
 
 	useEffect(() => {
@@ -62,7 +55,7 @@ export const MainSwiper: FC<{ data: DataType; currentPage: number } & SwiperProp
 			<Swiper {...mainSwiperProps} {...props}>
 				{data?.map(({ title, dates }, idx) => (
 					<SwiperSlide key={title}>
-						<InnerSwiper {...{ dates }} active={idx === mainSwiper?.activeIndex} />
+						<InnerSwiper {...{ dates, title }} active={idx === mainSwiper?.activeIndex} />
 					</SwiperSlide>
 				))}
 			</Swiper>

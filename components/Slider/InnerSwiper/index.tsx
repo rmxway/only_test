@@ -1,18 +1,22 @@
 import { FC, useEffect, useState } from 'react';
-import type SwiperType from 'swiper';
 import { Swiper, SwiperProps, SwiperSlide, useSwiper } from 'swiper/react';
 import { FreeMode, Navigation } from 'swiper/modules';
-import { DataItem } from '@/api';
-import { Description, InnerSwiperSlideWrapper, Title } from './styled';
+import type SwiperType from 'swiper';
+import { Chapter, Description, InnerSwiperSlideWrapper, Title } from './styled';
 import InnerControlsBlock from './InnerControlsBlock';
+import { useMediaQuery } from '@/hooks';
+import { breakpoints } from '@/theme';
+import { DataItem } from '@/api';
 
 interface InnerSwiperProps extends Pick<DataItem, 'dates'> {
 	active: boolean;
+	title: string;
 }
 
-export const InnerSwiper: FC<InnerSwiperProps> = ({ dates, active }) => {
+export const InnerSwiper: FC<InnerSwiperProps> = ({ dates, active, title }) => {
 	const [innerSwiper, setInnerSwiper] = useState<SwiperType>();
 	const mainSwiper = useSwiper();
+	const isMobile = useMediaQuery(breakpoints.md);
 
 	const innerSwiperProps: SwiperProps = {
 		modules: [Navigation, FreeMode],
@@ -36,6 +40,7 @@ export const InnerSwiper: FC<InnerSwiperProps> = ({ dates, active }) => {
 
 	return (
 		<InnerSwiperSlideWrapper $active={active}>
+			{isMobile && active && <Chapter>{title}</Chapter>}
 			<Swiper {...innerSwiperProps} className="swiper-inner">
 				{dates.map(({ date, description }) => (
 					<SwiperSlide key={date}>
