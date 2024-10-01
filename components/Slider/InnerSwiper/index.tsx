@@ -11,9 +11,10 @@ import { DataItem } from '@/api';
 interface InnerSwiperProps extends Pick<DataItem, 'dates'> {
 	active: boolean;
 	title: string;
+	id: string;
 }
 
-export const InnerSwiper: FC<InnerSwiperProps> = ({ dates, active, title }) => {
+export const InnerSwiper: FC<InnerSwiperProps> = ({ dates, active, title, id }) => {
 	const [innerSwiper, setInnerSwiper] = useState<SwiperType>();
 	const mainSwiper = useSwiper();
 	const isMobile = useMediaQuery(breakpoints.md);
@@ -21,8 +22,8 @@ export const InnerSwiper: FC<InnerSwiperProps> = ({ dates, active, title }) => {
 	const innerSwiperProps: SwiperProps = {
 		modules: [Navigation, FreeMode],
 		navigation: {
-			nextEl: '.button-next-inner',
-			prevEl: '.button-prev-inner',
+			prevEl: `.button-prev-inner-${id}`,
+			nextEl: `.button-next-inner-${id}`,
 		},
 		spaceBetween: 0,
 		slidesPerView: 'auto',
@@ -49,7 +50,7 @@ export const InnerSwiper: FC<InnerSwiperProps> = ({ dates, active, title }) => {
 					</SwiperSlide>
 				))}
 			</Swiper>
-			<InnerControlsBlock />
+			<InnerControlsBlock {...{ id }} />
 		</InnerSwiperSlideWrapper>
 	);
 };

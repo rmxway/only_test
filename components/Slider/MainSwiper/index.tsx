@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useId, useState } from 'react';
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';
 import { EffectCreative, Navigation, Pagination } from 'swiper/modules';
 import type SwiperType from 'swiper';
@@ -15,12 +15,14 @@ export const MainSwiper: FC<{ data: DataType; currentPage: number } & SwiperProp
 	...props
 }) => {
 	const [mainSwiper, setMainSwiper] = useState<SwiperType>();
+	const uniqId = useId();
+	const id = uniqId.split(':').slice(1, 2).join('');
 
 	const mainSwiperProps: SwiperProps = {
 		modules: [Navigation, Pagination, EffectCreative],
 		navigation: {
-			nextEl: '.button-next',
-			prevEl: '.button-prev',
+			nextEl: `.button-next-${id}`,
+			prevEl: `.button-prev-${id}`,
 		},
 		pagination: {
 			el: '.pagination',
@@ -47,15 +49,16 @@ export const MainSwiper: FC<{ data: DataType; currentPage: number } & SwiperProp
 
 	useEffect(() => {
 		mainSwiper?.slideTo(currentPage - 1);
-	}, [currentPage, mainSwiper]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [currentPage]);
 
 	return (
 		<MainSwiperWrapper>
-			<MainControlsBlock total={data.length} {...{ currentPage }} />
+			<MainControlsBlock total={data.length} {...{ currentPage, id }} />
 			<Swiper {...mainSwiperProps} {...props}>
 				{data?.map(({ title, dates }, idx) => (
 					<SwiperSlide key={title}>
-						<InnerSwiper {...{ dates, title }} active={idx === mainSwiper?.activeIndex} />
+						<InnerSwiper {...{ dates, title, id }} active={idx === mainSwiper?.activeIndex} />
 					</SwiperSlide>
 				))}
 			</Swiper>
