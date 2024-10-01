@@ -10,9 +10,10 @@ export const base = css`
 		-moz-osx-font-smoothing: grayscale;
 	}
 	body {
+		position: relative;
 		background-color: #f4f5f9;
-		overflow-y: scroll;
-        overflow-x: hidden;
+		overflow-y: auto;
+		overflow-x: hidden;
 		font-size: 1rem;
 		font-family: ${theme.fonts.main};
 	}

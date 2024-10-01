@@ -41,7 +41,7 @@ export const DynamicCircle: FC<DynamicCircleProps> = memo(({ buttons, currentPag
 						motionPath: {
 							path: pathCircle,
 							align: pathCircle,
-							end: (idx: number) => idx / steps - 0.125,
+							end: (idx: number) => idx / steps - 0.1665,
 						},
 						ease: 'power3.out',
 						translate: '-50% -50%',
@@ -68,7 +68,8 @@ export const DynamicCircle: FC<DynamicCircleProps> = memo(({ buttons, currentPag
 
 	useLayoutEffect(() => {
 		animateState(currentPage - 1);
-	}, [animateState, currentPage]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [currentPage]);
 
 	useLayoutEffect(() => {
 		// update circle elements when switching between mobile and desktop screens

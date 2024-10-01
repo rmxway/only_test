@@ -3,7 +3,7 @@ import { media } from '@/theme';
 
 export const WrapperMainSlider = styled.div`
 	position: relative;
-	display: flex;
+    display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 
@@ -21,7 +21,7 @@ export const WrapperMainSlider = styled.div`
 
             .circle-section {
                 height: auto;
-                flex-grow: 1;
+                flex-grow: 2;
                 min-height: 100px;
             }
         `}

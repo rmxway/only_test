@@ -28,6 +28,7 @@ export const MainSwiperWrapper = styled.div`
 		${media.lessThan('md')`
             top:0;
             flex-shrink: 0;
+            flex-grow: 1;
             margin-top: 60px;
             padding-bottom: 50px;
 

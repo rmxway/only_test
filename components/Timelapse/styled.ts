@@ -12,6 +12,7 @@ export const WrapperTimelapse = styled.div`
 		min-height: 100svh;
 
 		${Container} {
+			overflow: hidden;
 			padding-top: 180px;
 			border-left: 1px solid ${theme.colors.gray.$2};
 			border-right: 1px solid ${theme.colors.gray.$2};
