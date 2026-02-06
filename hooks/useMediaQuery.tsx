@@ -11,13 +11,14 @@ export const useMediaQuery = (query: string) => {
 		() => (typeof window !== 'undefined' ? window.matchMedia(`(max-width: ${query})`) : undefined),
 		[query],
 	);
-	const [match, setMatch] = useState(mediaQuery?.matches);
+	const [match, setMatch] = useState(() => mediaQuery?.matches ?? false);
 
 	useEffect(() => {
-		const onChange = () => setMatch(mediaQuery?.matches);
-		mediaQuery?.addEventListener('change', onChange);
-
-		return () => mediaQuery?.removeEventListener('change', onChange);
+		if (!mediaQuery) return;
+		setMatch(mediaQuery.matches);
+		const onChange = () => setMatch(mediaQuery.matches);
+		mediaQuery.addEventListener('change', onChange);
+		return () => mediaQuery.removeEventListener('change', onChange);
 	}, [mediaQuery]);
 
 	return match;

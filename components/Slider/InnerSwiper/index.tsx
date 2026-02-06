@@ -34,9 +34,9 @@ export const InnerSwiper: FC<InnerSwiperProps> = ({ dates, active, title, id }) 
 	};
 
 	useEffect(() => {
-		mainSwiper.on('slideChangeTransitionEnd', () => {
-			innerSwiper?.slideTo(0, 0);
-		});
+		const handleSlideChange = () => innerSwiper?.slideTo(0, 0);
+		mainSwiper?.on('slideChangeTransitionEnd', handleSlideChange);
+		return () => mainSwiper?.off('slideChangeTransitionEnd', handleSlideChange);
 	}, [innerSwiper, mainSwiper]);
 
 	return (
