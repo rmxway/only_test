@@ -1,25 +1,55 @@
-## Available Scripts
+# 📅 Исторические даты
 
-### `yarn start`
+Одностраничное приложение с интерактивной временной шкалой: периоды (Кино, Семья, Культура, Наука, IT, Будущее человечества) с датами и описаниями.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🛠️ Стек
 
-### `yarn test`
+- **React 18** + **TypeScript**
+- **styled-components** — стили и темизация
+- **GSAP** (@gsap/react) — анимации
+- **Swiper** — слайдеры
+- **Craco** — конфигурация (алиасы путей `@/`)
+- **polished**, **react-countup**
 
-Launches the test runner in the interactive watch mode.
+## 📋 Требования
 
-### `yarn build`
+- Node.js (см. `.nvmrc`, рекомендуется v22.7.0)
+- Yarn 4.x
 
-Builds the app for production to the `build` folder.
+## 📦 Установка
 
-### `yarn eject`
+```bash
+yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## ▶️ Скрипты
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Команда | Описание |
+|--------|----------|
+| `yarn start` | Запуск в режиме разработки ([http://localhost:3000](http://localhost:3000)) |
+| `yarn build` | Сборка для production в папку `build` |
+| `yarn test` | Запуск тестов в watch-режиме |
+| `yarn deploy` | Деплой сборки на GitHub Pages |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📁 Структура проекта
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+├── api/              # Типы и данные временной шкалы
+├── components/       # Компоненты
+│   ├── DynamicCircle/
+│   ├── Slider/       # MainSwiper, InnerSwiper
+│   ├── Timelapse/
+│   └── layouts/      # Container, Flexbox
+├── hooks/
+├── src/              # Точка входа, App
+├── theme/            # Тема, глобальные стили, миксины, анимации
+└── public/
+```
 
+## 🚀 Деплой
+
+Сборка публикуется на GitHub Pages при пуше в ветку `master` (GitHub Actions, workflow в `.github/workflows/deploy.yml`).
+
+## 💡 Примечание
+
+`yarn eject` — необратимая операция, выносит конфигурацию CRA в проект. Для кастомизации сборки используется Craco.
